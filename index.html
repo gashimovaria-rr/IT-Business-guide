@@ -217,6 +217,15 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
   .timeline::before{left:20px}
   .tl-dot{left:6px;width:28px;height:28px}
 }
+  .logo-img{
+  height:36px;
+  width:auto;
+  display:block;
+  filter:drop-shadow(0 4px 12px rgba(139,124,246,.35));
+}
+@media (max-width:520px){
+  .logo-img{height:28px}
+}
   /* ============ БРЕНД-ИЛЛЮСТРАЦИИ ============ */
 .brand-illustration{
   display:block;
@@ -321,7 +330,9 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
 <!-- HEADER -->
 <header id="header">
   <div class="container nav">
-    <div class="logo"><span class="dot"></span> ИТ &amp; Бизнес</div>
+<a href="#" class="logo">
+  <img src="img/logo.png" alt="ИТ и Бизнес" class="logo-img">
+</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#stream">Стрим</a></li>
       <li><a href="#goals">Цели</a></li>
