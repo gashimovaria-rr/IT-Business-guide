@@ -217,6 +217,103 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
   .timeline::before{left:20px}
   .tl-dot{left:6px;width:28px;height:28px}
 }
+  /* ============ БРЕНД-ИЛЛЮСТРАЦИИ ============ */
+.brand-illustration{
+  display:block;
+  max-width:100%;
+  height:auto;
+  margin:0 auto;
+  filter:drop-shadow(0 12px 30px rgba(139,124,246,.25));
+  opacity:.95;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1), filter .4s, opacity .4s;
+}
+.brand-illustration:hover{
+  transform:translateY(-4px) rotate(-1deg);
+  filter:drop-shadow(0 20px 40px rgba(139,124,246,.45));
+  opacity:1;
+}
+
+/* Иконка-подпись для карточек целей/принципов */
+.icon-badge{
+  width:64px;
+  height:64px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 18px;
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(108,92,231,.18),rgba(74,125,255,.08));
+  border:1px solid rgba(139,124,246,.3);
+  transition:.3s;
+}
+.icon-badge img{
+  width:38px;
+  height:38px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.9;
+}
+.principle:hover .icon-badge,
+.goal:hover .icon-badge{
+  background:linear-gradient(135deg,rgba(108,92,231,.35),rgba(74,125,255,.2));
+  border-color:var(--purple-bright);
+  transform:translateY(-3px) scale(1.05);
+}
+.principle:hover .icon-badge img,
+.goal:hover .icon-badge img{
+  opacity:1;
+}
+
+/* Большая иллюстрация в hero */
+.hero-illustration{
+  width:100%;
+  max-width:420px;
+  margin:0 auto 24px;
+}
+
+/* Иллюстрация в секции «Стрим» */
+.stream-illustration{
+  width:100%;
+  max-width:260px;
+  margin:0 auto 24px;
+  display:block;
+}
+
+/* Фоновый «водяной знак» из стрелки в облачке */
+.section-watermark{
+  position:absolute;
+  top:40px;
+  right:40px;
+  width:220px;
+  opacity:.06;
+  pointer-events:none;
+  z-index:0;
+}
+.section-watermark.left{right:auto;left:40px}
+
+/* Иллюстрации в «Принципах» — вместо эмодзи */
+.principle .brand-icon{
+  width:72px;
+  height:72px;
+  margin:0 auto 16px;
+  display:block;
+  filter:drop-shadow(0 8px 20px rgba(139,124,246,.3));
+  transition:.3s;
+}
+.principle:hover .brand-icon{
+  transform:scale(1.08) translateY(-3px);
+  filter:drop-shadow(0 14px 30px rgba(139,124,246,.5));
+}
+
+/* Адаптив */
+@media (max-width:900px){
+  .section-watermark{width:150px;top:20px;right:20px}
+  .hero-illustration{max-width:300px}
+}
+@media (max-width:520px){
+  .section-watermark{display:none}
+  .hero-illustration{max-width:240px}
+  .principle .brand-icon{width:56px;height:56px}
+}
 </style>
 </head>
 <body>
