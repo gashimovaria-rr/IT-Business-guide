@@ -99,7 +99,6 @@ h2{font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.15;letter-spacin
 .section-head p{color:var(--text-dim);font-size:16px}
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.visible{opacity:1;transform:none}
-
 /* STREAM */
 .stream-card{background:linear-gradient(160deg,rgba(108,92,231,.14),rgba(74,125,255,.06));border:1px solid var(--card-border);border-radius:var(--radius);padding:44px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;box-shadow:var(--shadow)}
 .stream-card h3{font-size:24px;margin-bottom:18px;font-weight:800}
@@ -201,23 +200,19 @@ h2{font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.15;letter-spacin
 .contact-card p{color:var(--text-dim);font-size:15.5px;margin-bottom:8px}
 .contact-card .email{display:inline-flex;align-items:center;gap:10px;margin-top:14px;font-weight:700;color:#fff;text-decoration:none;font-size:16px;padding:12px 22px;border-radius:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);transition:.25s}
 .contact-card .email:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+
+/* ===== AVATAR (единственное правило, увеличенный размер) ===== */
 .avatar {
-  width: 100%;
-  max-width: 750px;
-  aspect-ratio: 1 / 1;   /* сохраняет круглую форму */
-  height: auto;
+  display: block;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
   margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, .15);
   box-shadow: 0 20px 50px rgba(108, 92, 231, .5);
   flex: 0 0 auto;
-}
-
-@media (max-width: 900px) {
-  .avatar {
-    max-width: 320px;
-  }
 }
 
 footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:center;color:var(--text-dim);font-size:14px}
@@ -225,7 +220,7 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
 @media (max-width:900px){
   .hero-grid,.stream-card,.partner-grid,.contact-card{grid-template-columns:1fr}
   .hero-visual{height:320px}
-  .avatar{margin:0 auto}
+  .avatar{width:220px;height:220px;margin:0 auto}
   .contact-card{text-align:center}
   .contact-card .email{margin-left:auto;margin-right:auto}
   .nav-links{position:fixed;top:64px;left:0;right:0;flex-direction:column;gap:0;padding:16px 24px 24px;background:rgba(10,13,36,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);transform:translateY(-150%);transition:.35s;pointer-events:none}
@@ -343,16 +338,6 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
   transform:scale(1.08) translateY(-3px);
   filter:drop-shadow(0 14px 30px rgba(139,124,246,.5));
 }
-  .avatar {
-  display: block;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;      /* заполняет круг без искажений, края обрезаются */
-  object-position: center top;  /* фокус на верхней части (лицо) */
-  margin: 0 auto;
-  border: 3px solid rgba(255, 255, 255, .15); /* опциональная обводка */
-}
 
 /* Адаптив */
 @media (max-width:900px){
@@ -367,7 +352,6 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
 </style>
 </head>
 <body>
-
 <!-- HEADER -->
 <header id="header">
   <div class="container nav">
@@ -425,9 +409,9 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
           <li>Единой системы сквозной приоритизации портфеля инициатив внутри стрима</li>
         </ul>
       </div>
-      <div clas<div>
-  <img src="img/icon-arrow-cloud.png" alt="" class="brand-illustration stream-illustration">
-</div>
+      <div>
+        <img src="img/icon-arrow-cloud.png" alt="" class="brand-illustration stream-illustration">
+      </div>
     </div>
   </div>
 </section>
@@ -488,6 +472,7 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
     </div>
   </div>
 </section>
+
 <!-- ROLES -->
 <section id="roles">
   <div class="container">
@@ -684,7 +669,6 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
     </div>
   </div>
 </section>
-
 <!-- STREAMS -->
 <section id="streams">
   <div class="container">
@@ -740,9 +724,7 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
   'use strict';
 
   /* ==========================================================
-     ССЫЛКИ НА ВИДЕО (Confluence)
-     Если видео перестанет воспроизводиться inline (начнёт скачиваться),
-     замените значение на прямую ссылку с ?api=v2 в конце.
+     ССЫЛКИ НА ВИДЕО
      ========================================================== */
 var VIDEOS = {
   v1: "https://github.com/gashimovaria-rr/IT-Business-guide/releases/download/v1.0/koncepciya.mp4",
@@ -792,21 +774,16 @@ var VIDEOS = {
 
   function resolveSource(url){
     if (!url) return null;
-    // YouTube
     var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
     if (yt) return { type:'iframe', src:'https://www.youtube.com/embed/' + yt[1] + '?autoplay=1&rel=0' };
-    // VK
     var vk = url.match(/vk\.com\/video(-?\d+)_(\d+)/);
     if (vk) return { type:'iframe', src:'https://vk.com/video_ext.php?oid=' + vk[1] + '&id=' + vk[2] + '&autoplay=1' };
-    // Rutube
     var rt = url.match(/rutube\.ru\/video\/([a-f0-9]+)/i);
     if (rt) return { type:'iframe', src:'https://rutube.ru/play/embed/' + rt[1] };
-    // Всё остальное (в т.ч. Confluence mp4) — как файл
     return { type:'file', src:url };
   }
 
   function showLoader(){
-    // Сохраняем кнопку fs, заменяем содержимое на лоадер
     videoInline.innerHTML = '<div class="loading">Загрузка видео…</div>';
     videoInline.appendChild(fsBtn);
   }
@@ -833,7 +810,7 @@ var VIDEOS = {
       };
       videoInline.innerHTML = '';
       videoInline.appendChild(iframe);
-      videoInline.appendChild(fsBtn); // возвращаем кнопку поверх
+      videoInline.appendChild(fsBtn);
     } else {
       var video = document.createElement('video');
       video.src = resolved.src;
@@ -843,9 +820,8 @@ var VIDEOS = {
       video.onloadedmetadata = function(){
         var loader = videoInline.querySelector('.loading');
         if (loader) loader.remove();
-        // пробуем автоплей после загрузки метаданных
         var p = video.play();
-        if (p && p.catch) p.catch(function(){ /* автоплей заблокирован — ок */ });
+        if (p && p.catch) p.catch(function(){});
       };
       video.onerror = function(){
         videoInline.innerHTML =
@@ -860,7 +836,6 @@ var VIDEOS = {
       videoInline.appendChild(fsBtn);
     }
 
-    // Плавно прокручиваем к плееру, если он вне видимой зоны
     setTimeout(function(){
       var rect = videoInline.getBoundingClientRect();
       if (rect.top > window.innerHeight - 100 || rect.bottom < 100) {
@@ -896,7 +871,6 @@ var VIDEOS = {
     });
   }
 
-  // Меняем иконку при входе/выходе из fullscreen
   function syncFsIcon(){
     if (!fsBtn) return;
     var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
