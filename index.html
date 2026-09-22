@@ -326,6 +326,16 @@ footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.07);text-align:cent
   transform:scale(1.08) translateY(-3px);
   filter:drop-shadow(0 14px 30px rgba(139,124,246,.5));
 }
+  .avatar {
+  display: block;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;      /* заполняет круг без искажений, края обрезаются */
+  object-position: center top;  /* фокус на верхней части (лицо) */
+  margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, .15); /* опциональная обводка */
+}
 
 /* Адаптив */
 @media (max-width:900px){
